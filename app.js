@@ -25,8 +25,9 @@ stopBtn_el.addEventListener('click', () => {
 });
 recognition.onresult = (event) => {
   const result = event.results[0][0].transcript;
-  results.push({ value: result });
+  results.push({ id: Math.floor(Math.random() * 1000), value: result });
   output_el.value = result;
+  console.log(results);
 
   resultCount++; // Increment the result count
 
@@ -39,5 +40,3 @@ recognition.onend = () => {
   startBtn_el.innerHTML = 'Start Recording';
   startBtn_el.disabled = false;
 };
-
-console.log(results);
