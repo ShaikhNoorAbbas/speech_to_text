@@ -15,25 +15,29 @@
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
   </head>
   <body>
-    <section>
-      <div class="container" data-aos="zoom-in" data-aos-duration="1000">
-        <h1>Speech to Text <span>Converter</span></h1>
-        <div
-          class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 btnContainer"
-        >
-          <button id="startButton" class="btn">Start Recording</button>
-          <button id="stopButton" class="btn">Clear Text</button>
+    <div
+      class="grid grid-cols-1 w-full lg:grid-cols-2 lg:gap-4 gap-3 p-10 items-center justify-center"
+    >
+      <section>
+        <div class="container" data-aos="zoom-in" data-aos-duration="1000">
+          <h1>Speech to Text <span>Converter</span></h1>
+          <div
+            class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 btnContainer"
+          >
+            <button id="startButton" class="btn">Start Recording</button>
+            <button id="stopButton" class="btn">Clear Text</button>
+          </div>
+          <textarea
+            id="output"
+            cols="30"
+            placeholder="Your Recorded Text will Come here"
+            rows="5"
+            class="output"
+          ></textarea>
         </div>
-        <textarea
-          id="output"
-          cols="30"
-          placeholder="Your Recorded Text will Come here"
-          rows="5"
-          class="output"
-        ></textarea>
-        <ol id="resultsList"></ol>
-      </div>
-    </section>
+      </section>
+      <ol id="resultsList"></ol>
+    </div>
 
     <!-- Javascript Scripts -->
     <script src="app.js"></script>

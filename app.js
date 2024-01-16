@@ -5,10 +5,8 @@ let output_el = document.querySelector('#output');
 let resultsList_el = document.querySelector('#resultsList');
 let results = [];
 let resultCount = 0;
-// Initialzing Speech Recognition API
 const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
 
-// Setting up language
 recognition.lang = 'en-US';
 
 // Starting Recording
@@ -23,6 +21,7 @@ startBtn_el.addEventListener('click', () => {
 stopBtn_el.addEventListener('click', () => {
   output_el.value = '';
 });
+// Results
 recognition.onresult = (event) => {
   const result = event.results[0][0].transcript;
   results.push({ id: Math.floor(Math.random() * 1000), value: result });
@@ -36,6 +35,7 @@ recognition.onresult = (event) => {
   listItem.textContent = `${resultCount}. ${result}`;
   resultsList_el.appendChild(listItem);
 };
+// OnEnd
 recognition.onend = () => {
   startBtn_el.innerHTML = 'Start Recording';
   startBtn_el.disabled = false;
