@@ -1,42 +1,37 @@
-// html Element Access
-let startBtn_el = document.querySelector('#startButton');
-let stopBtn_el = document.querySelector('#stopButton');
-let output_el = document.querySelector('#output');
-let resultsList_el = document.querySelector('#resultsList');
+let start_btn_el = document.querySelector("#startButton");
+let clear_btn_el = document.querySelector("#stopButton");
+let output_el = document.querySelector("#output");
+let list_el = document.querySelector("#resultsList");
+// Additional variables
 let results = [];
 let resultCount = 0;
+
 const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
 
-recognition.lang = 'en-US';
-
-// Starting Recording
-startBtn_el.addEventListener('click', () => {
+start_btn_el.addEventListener("click", (event) => {
   recognition.start();
-  startBtn_el.disable = true;
-  startBtn_el.innerHTML = 'Listening........';
+  start_btn_el.textContent = "Listening....";
+  start_btn_el.disable = true;
 });
 
-//Stoping Recording
+recognition.onend = () => {
+  start_btn_el.textContent = "Start Recording";
+  start_btn_el.disable = false;
+};
 
-stopBtn_el.addEventListener('click', () => {
-  output_el.value = '';
-});
-// Results
 recognition.onresult = (event) => {
   const result = event.results[0][0].transcript;
-  results.push({ id: Math.floor(Math.random() * 1000), value: result });
-  output_el.value = result;
+  output_el.textContent = result;
+  results.push({ id: Math.floor(Math.random() * 10), value: result });
   console.log(results);
 
-  resultCount++; // Increment the result count
-
-  // Create a new list item with a number and append it to the ordered list
-  const listItem = document.createElement('li');
+  // count
+  resultCount++;
+  const listItem = document.createElement("li");
   listItem.textContent = `${resultCount}. ${result}`;
-  resultsList_el.appendChild(listItem);
+  list_el.appendChild(listItem);
 };
-// OnEnd
-recognition.onend = () => {
-  startBtn_el.innerHTML = 'Start Recording';
-  startBtn_el.disabled = false;
-};
+
+clear_btn_el.addEventListener("click", () => {
+  output_el.textContent = "";
+});
