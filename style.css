@@ -63,6 +63,7 @@ body {
   border: none;
   outline: none;
   box-shadow: 1px 1px 0.54rem black;
+  text-transform: capitalize;
 }
 #resultsList li {
   text-align: justify;
